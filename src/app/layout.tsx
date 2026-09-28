@@ -2,17 +2,18 @@ import type { Metadata } from "next";
 import { Space_Grotesk, DM_Sans } from "next/font/google";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { getSiteUrl } from "@/lib/site-url";
 import "./globals.css";
 
 const display = Space_Grotesk({ subsets: ["latin"], variable: "--font-display", display: "swap" });
 const body = DM_Sans({ subsets: ["latin"], variable: "--font-body", display: "swap" });
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : undefined);
+const siteUrl = getSiteUrl();
 
 export const metadata: Metadata = {
   title: { default: "Adrian — Software & AI projects", template: "%s | Adrian" },
   description: "Selected software, AI and workflow projects by Adrian. Clear ideas, considered interfaces, working prototypes.",
   applicationName: "Adrian Portfolio",
-  metadataBase: new URL(siteUrl ?? "http://localhost:3000"),
+  metadataBase: siteUrl ? new URL(siteUrl) : undefined,
   openGraph: {
     title: "Adrian — Software & AI projects",
     description: "Selected software, AI and workflow projects by Adrian.",

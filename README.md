@@ -33,7 +33,7 @@ Before publication, confirm the biography, contact method and permission to show
 
 ## Vercel
 
-Import the repository as a Next.js project. Set `NEXT_PUBLIC_SITE_URL` to the final HTTPS origin (without a trailing slash), then deploy. This enables correct absolute metadata and sitemap URLs. No other environment variables are required for the portfolio itself. The project has a generated favicon, OpenGraph image, metadata, robots route and sitemap route.
+Import the repository as a Next.js project. `NEXT_PUBLIC_SITE_URL` may be left unset for the first deployment; the site uses Vercel's production URL when available. After the final address is known, set `NEXT_PUBLIC_SITE_URL` to its full HTTPS origin (without a trailing slash) and redeploy. Do not create this variable with an empty value. It controls absolute metadata and sitemap URLs. No other environment variables are required for the portfolio itself. The project has a generated favicon, OpenGraph image, metadata, robots route and sitemap route.
 
 ## Asset checklist
 
