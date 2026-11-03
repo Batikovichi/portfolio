@@ -12,6 +12,9 @@ export function ProjectVisual({ type, compact = false }: { type: VisualType; com
       {type === "lectureai" && <LectureAIVisual />}
       {type === "beauty" && <BeautyVisual />}
       {type === "shorts" && <ShortsVisual />}
+      {type === "daypilot" && <DayPilotVisual />}
+      {type === "boutique" && <BoutiqueVisual />}
+      {type === "agents" && <AgentsVisual />}
       <span className="visual-caption">Illustrative interface concept</span>
     </div>
   );
@@ -55,6 +58,18 @@ function LectureAIVisual() {
 
 function BeautyVisual() {
   return <div className="mini-ui beauty-ui"><div className="beauty-header"><span className="beauty-avatar">✽</span><span>Beauty Bot<small>Appointment assistant</small></span><span>⋯</span></div><div className="chat-bubble">Choose a service and I&apos;ll show you available times.</div><div className="chat-actions"><span><CalendarDays size={14}/> Book a time</span><span>My bookings</span></div><div className="chat-bubble user">Tomorrow, please ↗</div></div>;
+}
+
+function DayPilotVisual() {
+  return <div className="mini-ui beauty-ui daypilot-ui"><div className="beauty-header"><span className="beauty-avatar">☀</span><span>DayPilot<small>Morning briefing</small></span><span>⋯</span></div><div className="chat-bubble">08:00 · 14°C, light jacket. Two classes today, first at 9:45.</div><div className="chat-bubble user">remind me at 19:30 to pick up the parcel</div><div className="chat-actions"><span><CalendarDays size={14}/> Schedule</span><span><Check size={14}/> Tasks</span></div></div>;
+}
+
+function BoutiqueVisual() {
+  return <div className="mini-ui boutique-ui"><span className="tiny-overline">ATELIER · RU / RO / EN</span><h3>Quiet luxury,<br />booked in a tap.</h3><div className="answer-line">Fitting with a stylist · Thu 15:45 <ArrowUpRight size={14}/></div><div className="lecture-chips"><span>Lookbook</span><span>Catalog</span><span>CRM</span></div></div>;
+}
+
+function AgentsVisual() {
+  return <div className="mini-ui agents-ui"><span className="tiny-overline">ORCHESTRATE / TASK 042</span><h3>Isolated.<br />Reviewed. Approved.</h3><div className="question-line">worktree → executor → checks → review</div><div className="answer-line">Approval required before merge <Check size={14}/></div><div className="progress-bars"><i/><i/><i/><i/></div></div>;
 }
 
 function ShortsVisual() {

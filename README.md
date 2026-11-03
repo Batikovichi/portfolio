@@ -27,7 +27,7 @@ The visual components in `src/components/project-visual.tsx` are **illustrative 
 
 ## Content and privacy
 
-The case studies distinguish local prototypes from verified deployments. No private repository URL, token, customer record or private source content is embedded in the site. Several BookFlow repositories and the two short-video repositories are consolidated into single project stories. A local, ignored `inventory.private.md` records the repo-to-story mapping; it is intentionally excluded from Git.
+The case studies distinguish local prototypes from verified deployments. No private repository URL, token, customer record or private source content is embedded in the site. Several BookFlow repositories and the short-video projects are consolidated into single project stories. A local, ignored `inventory.private.md` records the repo-to-story mapping; it is intentionally excluded from Git.
 
 Before publication, confirm the biography, contact method and permission to show each project. No live demos are linked because none was verified during preparation. Real project media still needs review and redaction.
 
@@ -45,6 +45,9 @@ Import the repository as a Next.js project. `NEXT_PUBLIC_SITE_URL` may be left u
 | Business Diagnostic | Interview screen, redacted report |
 | LectureAI | Lecture workspace, flashcard and quiz views |
 | Beauty Bot | Redacted customer conversation and owner view |
-| Shorts Studio | Approved output video, pipeline diagram, editing/output view |
+| AI Video Studio | Approved output video, pipeline diagram, contact sheet of a rendered episode |
+| DayPilot AI | Morning briefing, reminder conversation, weekly schedule view |
+| Boutique Site & CRM | Homepage and lookbook, fitting booking, redacted staff calendar (client permission first) |
+| AI Agent System | Terminal task run, approval gate example |
 
 Use neutral mockups until the real material is approved. Avoid faces, phone numbers, customer names and unpublished business data in captures.
