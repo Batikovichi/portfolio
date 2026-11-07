@@ -38,3 +38,67 @@ html[data-theme="dark"]{--bg:#111a17;--surface:#1b2722;--ink:#f1f2e9;--muted:#aa
 /* The icon follows the theme set before hydration. */
 .theme-sun{display:none}html[data-theme="dark"] .theme-sun{display:block}html[data-theme="dark"] .theme-moon{display:none}
 .repository-note,.more-repository{display:block;color:var(--muted);font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase}.repository-note{margin:20px 0 0}.more-repository{margin:16px 7px 0}
+
+/* ---------- Business pages (/ro, /ru) ---------- */
+.biz-hero{padding:70px 0 40px}
+.biz-topline{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:38px}
+.biz-lang{display:flex;gap:6px}
+.biz-lang a,.biz-lang span{border:1px solid var(--line);border-radius:100px;padding:6px 12px;font-size:12px;font-weight:600;color:var(--ink);text-decoration:none}
+.biz-lang span{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.biz-hero h1{font-family:var(--font-display);font-size:clamp(40px,6.4vw,92px);line-height:1;letter-spacing:-.03em;margin:0 0 26px;max-width:1100px}
+.biz-hero h1 em{font-style:normal;color:#6f9a63}
+.biz-lead{font-size:clamp(17px,1.6vw,21px);line-height:1.55;color:var(--muted);max-width:760px;margin:0 0 32px}
+.biz-h2{font-family:var(--font-display);font-size:clamp(30px,3.8vw,52px);line-height:1.05;letter-spacing:-.02em;margin:10px 0 16px}
+.biz-sub{color:var(--muted);font-size:17px;line-height:1.55;max-width:720px;margin:0 0 36px}
+.biz-services{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:30px}
+.biz-card{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:26px;height:100%}
+.biz-card h3{font-family:var(--font-display);font-size:21px;line-height:1.2;margin:18px 0 10px}
+.biz-card p{color:var(--muted);line-height:1.55;margin:0}
+.biz-demo{background:var(--soft)}
+.calc{display:grid;grid-template-columns:1.15fr .85fr;gap:22px;align-items:start}
+.calc-form{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:20px}
+.calc-form fieldset{border:0;padding:0;margin:0}
+.calc-form legend,.calc-form label{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:10px}
+.calc-form label{display:flex;flex-direction:column;gap:10px}
+.calc-form label b{color:#4f7d45}
+.calc-tabs{display:flex;flex-wrap:wrap;gap:8px}
+.calc-tabs button{border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:100px;padding:10px 18px;font-size:15px;cursor:pointer;transition:.15s}
+.calc-tabs.small button{font-size:14px;padding:8px 14px}
+.calc-tabs button.active{background:var(--deep);color:#f3f5eb;border-color:var(--deep)}
+html[data-theme="dark"] .calc-tabs button.active{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.calc-form input[type=range]{width:100%;accent-color:#5d8b52}
+.calc-form input:not([type]){border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:12px;padding:12px 14px;font-size:16px;font-weight:400}
+.calc-result{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;border-top:1px dashed var(--line);border-bottom:1px dashed var(--line);padding:16px 0}
+.calc-result span{color:var(--muted);font-size:14px}
+.calc-result strong{font-family:var(--font-display);font-size:clamp(26px,3vw,36px)}
+.calc-contact{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.calc-send{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--accent);color:var(--accent-ink);border:0;border-radius:100px;padding:15px 22px;font-size:16px;font-weight:700;cursor:pointer}
+.calc-send:hover{filter:brightness(.95)}
+.calc-note{font-size:12px;color:var(--muted);margin:0}
+.tg{background:#17212b;border-radius:24px;overflow:hidden;color:#e8eef3;position:sticky;top:96px;box-shadow:0 20px 50px -30px rgba(0,0,0,.5)}
+.tg-head{display:flex;align-items:center;gap:10px;padding:16px 18px;background:#232e3c;font-weight:600;font-size:15px}
+.tg-avatar{width:34px;height:34px;border-radius:50%;background:#2b5278;display:grid;place-items:center}
+.tg-body{padding:22px 18px 26px;min-height:300px;background:#0e1621}
+.tg-msg{background:#182533;border-radius:14px 14px 14px 4px;padding:14px 16px;display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:1.4;max-width:95%;opacity:.55;transition:opacity .3s,transform .3s}
+.tg-msg.arrived{opacity:1;transform:translateY(-2px);box-shadow:0 0 0 2px #5288c1}
+.tg-msg b{color:#6ab3f3}
+.tg-sent{color:#8fd18a;font-size:14px;margin:14px 0 0}
+.biz-steps{list-style:none;padding:0;margin:30px 0 0;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.biz-steps li{border-top:2px solid var(--ink);padding-top:18px}
+.biz-step-n{font-family:var(--font-display);font-size:14px;color:var(--muted)}
+.biz-steps h3{font-family:var(--font-display);font-size:24px;margin:8px 0}
+.biz-steps p{color:var(--muted);line-height:1.55;margin:0}
+.biz-projects{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.biz-project-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;font-size:13px;color:var(--muted)}
+.biz-project-top .status-badge{white-space:normal;text-align:right}
+.biz-project ul{margin:16px 0 0;padding-left:18px;color:var(--ink);line-height:1.6;font-size:14px}
+.biz-honest{margin-top:28px;border:1px dashed var(--line);border-radius:22px;padding:24px 26px;max-width:820px}
+.biz-honest h3{font-family:var(--font-display);margin:0 0 8px;font-size:20px}
+.biz-honest p{margin:0;color:var(--muted);line-height:1.6}
+.biz .contact-inner h2{font-size:clamp(36px,5.5vw,76px);margin:0 0 18px}
+.biz .contact-inner>p{margin:0 0 30px;font-size:18px}
+.biz-contacts{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:34px}
+.biz-contacts a{display:inline-flex;align-items:center;gap:10px;background:#b9db9b;color:#213827;border-radius:100px;padding:14px 22px;font-weight:700;text-decoration:none;font-size:17px}
+.biz-dev-link{color:#c3d0c3;font-size:14px;display:inline-flex;gap:6px;align-items:center}
+@media (max-width:980px){.biz-services{grid-template-columns:1fr 1fr}.calc{grid-template-columns:1fr}.tg{position:static}.biz-steps{grid-template-columns:1fr}}
+@media (max-width:600px){.biz-services{grid-template-columns:1fr}.calc-contact{grid-template-columns:1fr}.calc-form{padding:20px}.biz-hero{padding-top:40px}.biz-topline{flex-direction:column;align-items:flex-start}.biz-contacts a{font-size:15px;word-break:break-all}}
