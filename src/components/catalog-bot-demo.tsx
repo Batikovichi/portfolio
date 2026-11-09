@@ -55,11 +55,12 @@ function metres(t: string) {
   return m ? parseFloat(m[1].replace(",", ".")) : null;
 }
 const thick = (t: string) => (/0[.,]5\b|0[.,]50/.test(t) ? "0.5" : "0.45");
+const shown = (th: string) => th.replace(".", ",");
 
 export function answer(raw: string): Omit<Msg, "from"> {
   const t = norm(raw);
   const lang: L = /[а-я]/.test(t) ? "ru" : "ro";
-  const r = (ro: string, ru: string, src?: string, handoff?: boolean) => ({ text: lang === "ro" ? ro : ru, src, handoff });
+  const r = (ro: string, ru: string, src?: string, handoff?: boolean) => ({ text: lang === "ro" ? ro : ru.replace(/ lei/g, " лей"), src, handoff });
 
   const city = Object.keys(CITY_KEYS).find((k) => has(t, CITY_KEYS[k]));
   const a = area(t);
@@ -69,8 +70,8 @@ export function answer(raw: string): Omit<Msg, "from"> {
     const p = PRICES.profnastil[th as "0.45"];
     if (a)
       return r(
-        `Profnastil C8, ${th} mm: ${a} m² × ${lei(p)} = ${lei(a * p)}. Recomand +5% la tăieri. E în stoc, livrare în 1–2 zile. Vreți să vă calculăm și accesoriile (șuruburi, coamă)?`,
-        `Профнастил C8, ${th} мм: ${a} м² × ${lei(p)} = ${lei(a * p)}. Советую +5% на подрезку. Есть на складе, доставка 1–2 дня. Посчитать и комплектующие (саморезы, конёк)?`,
+        `Profnastil C8, ${shown(th)} mm: ${a} m² × ${lei(p)} = ${lei(a * p)}. Recomand +5% la tăieri. E în stoc, livrare în 1–2 zile. Vreți să vă calculăm și accesoriile (șuruburi, coamă)?`,
+        `Профнастил C8, ${shown(th)} мм: ${a} м² × ${lei(p)} = ${lei(a * p)}. Советую +5% на подрезку. Есть на складе, доставка 1–2 дня. Посчитать и комплектующие (саморезы, конёк)?`,
         "Prețuri 2026.xlsx · rândul 4–5",
       );
     return r(
@@ -85,8 +86,8 @@ export function answer(raw: string): Omit<Msg, "from"> {
     const p = PRICES.tigla[th as "0.45"];
     if (a)
       return r(
-        `Țiglă metalică ${th} mm: ${a} m² × ${lei(p)} = ${lei(a * p)}. Cu montaj (+${PRICES.montajAcoperis} lei/m²): ${lei(a * (p + PRICES.montajAcoperis))}. Se produce în 3 zile lucrătoare. Măsurarea în Chișinău e gratuită.`,
-        `Металлочерепица ${th} мм: ${a} м² × ${lei(p)} = ${lei(a * p)}. С монтажом (+${PRICES.montajAcoperis} лей/м²): ${lei(a * (p + PRICES.montajAcoperis))}. Изготовление 3 рабочих дня. Замер по Кишинёву бесплатный.`,
+        `Țiglă metalică ${shown(th)} mm: ${a} m² × ${lei(p)} = ${lei(a * p)}. Cu montaj (+${PRICES.montajAcoperis} lei/m²): ${lei(a * (p + PRICES.montajAcoperis))}. Se produce în 3 zile lucrătoare. Măsurarea în Chișinău e gratuită.`,
+        `Металлочерепица ${shown(th)} мм: ${a} м² × ${lei(p)} = ${lei(a * p)}. С монтажом (+${PRICES.montajAcoperis} лей/м²): ${lei(a * (p + PRICES.montajAcoperis))}. Изготовление 3 рабочих дня. Замер по Кишинёву бесплатный.`,
         "Prețuri 2026.xlsx · rândul 7–8 · Montaj.docx",
       );
     return r(
