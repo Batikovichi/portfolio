@@ -11,7 +11,7 @@ import { FileSpreadsheet, FileText, Globe, Send } from "lucide-react";
 
 type Lang = "ro" | "ru";
 type Reply = { ro: string; ru: string; src?: string; lead?: string; awaitDetails?: string };
-type Entry = { keys: string[]; reply: (qty: number | null) => Reply };
+type Entry = { keys: string[]; reply: (qty: number | null, text: string) => Reply };
 type Msg = { from: "user" | "bot"; text: string; src?: string };
 type Brand = {
   id: string;
@@ -26,7 +26,13 @@ type Brand = {
 
 const norm = (s: string) =>
   s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/ё/g, "е");
-const lei = (n: number) => `${Math.round(n * 100) / 100 === Math.round(n) ? Math.round(n).toLocaleString("ro-MD") : n.toLocaleString("ro-MD", { minimumFractionDigits: 2 })} lei`;
+const lei = (n: number) => {
+  const [i, d] = (Math.round(n * 100) / 100).toFixed(2).split(".");
+  const int = i.replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  return `${d === "00" ? int : `${int},${d}`} lei`;
+};
+// Picks the model the client named (e.g. "Sum 310R"), else the first one.
+const pick = (text: string, items: [string, number][]) => items.find(([code]) => text.includes(norm(code))) ?? items[0];
 const qtyOf = (t: string) => {
   const m = t.match(/(\d+)\s*(buc|bucati|role|rol|seturi|set|шт|штук|рулон|набор|pcs)/);
   return m ? parseInt(m[1], 10) : null;
@@ -284,11 +290,12 @@ const METALIC: Brand = {
     },
     {
       keys: ["dulap", "haine", "vestiar", "шкаф", "одежд", "раздевал"],
-      reply: (q) => {
-        const t = times(q, 5280, "buc.", "шт.");
+      reply: (q, text) => {
+        const [code, price] = pick(text, [["Sum 320R", 5280], ["Sum 310R", 3048], ["Sum 330R", 7650]]);
+        const t = times(q, price, `buc. ${code}`, `шт. ${code}`);
         return {
-          ro: `Dulapuri metalice pentru haine (demontabile): Sum 310R — 3 048 lei, Sum 320R — 5 280 lei,${t.ro} Sum 330R — 7 650 lei. Pentru vestiare de firmă — spuneți câți angajați și calculez.`,
-          ru: `Металлические шкафы для одежды (разборные): Sum 310R — 3 048 лей, Sum 320R — 5 280 лей,${t.ru} Sum 330R — 7 650 лей. Для раздевалки на предприятии — напишите, сколько сотрудников, посчитаю.`,
+          ro: `Dulapuri metalice pentru haine (demontabile): Sum 310R — 3 048 lei, Sum 320R — 5 280 lei, Sum 330R — 7 650 lei.${t.ro} Pentru vestiare de firmă — spuneți câți angajați și calculez.`,
+          ru: `Металлические шкафы для одежды (разборные): Sum 310R — 3 048 лей, Sum 320R — 5 280 лей, Sum 330R — 7 650 лей.${t.ru} Для раздевалки на предприятии — напишите, сколько сотрудников, посчитаю.`,
           src: "Prețuri dulapuri și bancuri.xlsx",
         };
       },
@@ -327,7 +334,7 @@ function respond(brand: Brand, raw: string, pending: string | null): Reply & { l
       ru: "Спасибо! Передал заявку менеджеру, он перезвонит с ценой в рабочее время. Оставьте номер телефона, если ещё не написали.",
       lead: `📝 ${pending}: „${raw}”`,
     };
-  if (hit) return { lang, ...hit.reply(q) };
+  if (hit) return { lang, ...hit.reply(q, t) };
   if (/^(salut|buna|privet|привет|здравств|добр)/.test(t))
     return { lang, ro: brand.greet, ru: brand.greet };
   return {
